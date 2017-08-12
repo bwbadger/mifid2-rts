@@ -9,3 +9,7 @@ The regulator [ESMA (European Securities and Markets Authority)](https://en.wiki
 The code in this GitHub repository implements the taxonomies defined in RTS 2 Annex 3 (page 72 of the RTS PDF) and in RTS 23 table 2 (page 469).
 
 The hope is that we can use this code either as an example of, or as the basis of, a body of code which is a working executable model of all MiFID II Regulatory Technical Standards, together with a body of test data which can illustrate how the technical standards are intended to work in practice.
+
+If you would like to see some trivial examples of the code in use, just run rts2_annex3.py from the command line.  This will build the taxonomies and run a few simple example ‘trades’ through.  The module dumps a representation of the RTS 2 taxonomy and the test trade classifications to stdout.
+
+This code was written for, and is still used within, a tier 1 investment bank where there are lots of tests for this code but those tests are based on all-too-real trade data and so have not been included here.

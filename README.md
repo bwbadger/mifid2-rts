@@ -32,4 +32,3 @@ Type "help", "copyright", "credits" or "license" for more information.
 {'RTS2 version': 'Brussels, 14.7.2016 C(2016) 4301 final ANNEXES 1 to 4', 'Asset class': 'Foreign Exchange Derivatives', 'Sub-asset class': 'Deliverable FX options (DO)', 'Segmentation criterion 1 description': 'underlying currency pair defined as combination of the two currencies underlying the derivative contract', 'Segmentation criterion 2': 'Maturity bucket 2: 1 week to 3 months', 'Segmentation criterion 1': "('GBP', 'USD')", 'Segmentation criterion 2 description': 'time to maturity bucket of the swap defined as follows:'} 
 
 
-

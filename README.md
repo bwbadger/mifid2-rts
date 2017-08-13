@@ -12,4 +12,24 @@ The hope is that we can use this code either as an example of, or as the basis o
 
 If you would like to see some trivial examples of the code in use, just run rts2_annex3.py from the command line.  This will build the taxonomies and run a few simple example ‘trades’ through.  The module dumps a representation of the RTS 2 taxonomy and the test trade classifications to stdout.
 
-This code was written for, and is still used within, a tier 1 investment bank where there are lots of tests for this code but those tests are based on all-too-real trade data and so have not been included here.
+Here is an example of building and classifying a sample deal:
+
+Python 2.7.10 (default, Oct 23 2015, 19:19:21) 
+[GCC 4.2.1 Compatible Apple LLVM 7.0.0 (clang-700.0.59.5)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>>
+>>> import datetime
+>>> import rts2_annex3
+>>> class SampleTrade(object):
+...     pass
+... 
+>>> sample_trade = SampleTrade()
+>>> sample_trade.asset_class_name = 'Foreign Exchange Derivatives'
+>>> sample_trade.sub_asset_class_name= 'Deliverable FX options (DO)'            >>> sample_trade.underlying_currency_pair = ('GBP', 'USD')                      >>> sample_trade.from_date = datetime.date(2017, 8, 13)                         >>> sample_trade.to_date = datetime.date(2017, 10, 12)
+>>> 
+>>> sample_classification = rts2_annex3.class_root.classification_for(sample_trade)
+>>> sample_classification.classification_dict()
+{'RTS2 version': 'Brussels, 14.7.2016 C(2016) 4301 final ANNEXES 1 to 4', 'Asset class': 'Foreign Exchange Derivatives', 'Sub-asset class': 'Deliverable FX options (DO)', 'Segmentation criterion 1 description': 'underlying currency pair defined as combination of the two currencies underlying the derivative contract', 'Segmentation criterion 2': 'Maturity bucket 2: 1 week to 3 months', 'Segmentation criterion 1': "('GBP', 'USD')", 'Segmentation criterion 2 description': 'time to maturity bucket of the swap defined as follows:'} 
+
+
+

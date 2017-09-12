@@ -10,6 +10,8 @@ The code in this GitHub repository implements the taxonomies defined in RTS 2 An
 
 The hope is that we can use this code either as an example of, or as the basis of, a body of code which is a working executable model of all MiFID II Regulatory Technical Standards, together with a body of test data which can illustrate how the technical standards are intended to work in practice.
 
+There are [some slides](https://docs.google.com/presentation/d/1sVgeO3IAO7ZMrbzAYWZtbu21MxFlESL0ONvJHUuFgBc/edit?usp=sharing) which present the the intent of the project.
+
 If you would like to see some trivial examples of the code in use, just run rts2_annex3.py from the command line.  This will build the taxonomies and run a few simple example ‘trades’ through.  The module dumps a representation of the RTS 2 taxonomy and the test trade classifications to stdout.
 
 Here is an example of building and classifying a sample deal:
@@ -23,9 +25,9 @@ class SampleTrade(object):
 
 sample_trade = SampleTrade()
 sample_trade.asset_class_name = 'Foreign Exchange Derivatives'
-sample_trade.sub_asset_class_name= 'Deliverable FX options (DO)'            
-sample_trade.underlying_currency_pair = ('GBP', 'USD')                      
-sample_trade.from_date = datetime.date(2017, 8, 13)                         
+sample_trade.sub_asset_class_name= 'Deliverable FX options (DO)'
+sample_trade.underlying_currency_pair = ('GBP', 'USD')
+sample_trade.from_date = datetime.date(2017, 8, 13)
 sample_trade.to_date = datetime.date(2017, 10, 12)
 
 sample_classification = rts2_annex3.class_root.classification_for(sample_trade)

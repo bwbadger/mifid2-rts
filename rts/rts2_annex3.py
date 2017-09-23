@@ -2816,9 +2816,8 @@ def classify(a_sample):
     if a_sub_class:
         print("\nFull Name:" + a_sub_class.full_name())
         items = a_sub_class.classification_dict().items()
-        items.sort()
         print("\nClassification Dictionary:")
-        for item in items:
+        for item in sorted(items):
             print(str(item))
     else:
         print('\nNOT CLASSIFIED!')

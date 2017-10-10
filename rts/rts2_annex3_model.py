@@ -35,6 +35,7 @@ __license__ = "BSD-3-Clause"
 
 import datetime
 import calendar
+import collections
 
 import rts23_table2
 
@@ -350,7 +351,7 @@ class Classification(object):
         This dictionary is the stored form of the classification.  The string literal form of
         the dictionary is the literal name used to identify RTS 2 sub-classes.
         """
-        target_dict = {}
+        target_dict = collections.OrderedDict()
         if self.root:
             target_dict['RTS2 version'] = self.root.version_id
         if self.asset_class:

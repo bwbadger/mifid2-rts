@@ -1,6 +1,6 @@
 # mifid2-rts
 
-This project implements executable form of the MiFID II RTS (Regulatory Technical Standard) documents.
+This project implements an executable form of the MiFID II RTS (Regulatory Technical Standard) documents.
 
 For an overview of the context and the objectives of the project, see [this video](https://www.youtube.com/watch?v=kmV2jDNgH-Q).
 

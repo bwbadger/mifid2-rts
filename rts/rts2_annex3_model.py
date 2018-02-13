@@ -586,6 +586,30 @@ class UnderlyingEquityCriterion(ArbitraryValueCriterion):
         return subject.underlying_equity
 
 
+class UnderlyingCommodityCriterion(ArbitraryValueCriterion):
+
+    def subject_value(self, subject):
+        return subject.underlying_commodity
+
+
+class UnderlyingBondCriterion(ArbitraryValueCriterion):
+
+    def subject_value(self, subject):
+        return subject.underlying_bond
+
+
+class UnderlyingFutureForwardCriterion(ArbitraryValueCriterion):
+
+    def subject_value(self, subject):
+        return subject.underlying_future_forward
+
+
+class UnderlyingEquityOptionCriterion(ArbitraryValueCriterion):
+
+    def subject_value(self, subject):
+        return subject.underlying_equity_option
+
+
 class EquityParameterCriterion(DescreteValueCriterion):
 
     def subject_value(self, subject):

@@ -2752,18 +2752,195 @@ class_root.append(
     )
 )
 
+common_cfd_liquid_thresholds=[
+    ThresholdTable(
+        ssti_pre_trade=PreTrade(trade_percentile=60,
+                                threshold_floor=SumOfMoney('EUR', '50,000')),
+        lis_pre_trade=PreTrade(trade_percentile=70,
+                               threshold_floor=SumOfMoney('EUR', '60,000')),
+        ssti_post_trade=PostTrade(trade_percentile=80, volume_percentile=60,
+                                  threshold_floor=SumOfMoney('EUR', '90,000')),
+        lis_post_trade=PostTrade(trade_percentile=90, volume_percentile=70,
+                                 threshold_floor=SumOfMoney('EUR', '100,000')),
+        ),
+    ]
+
+common_cfd_non_liquid_thresholds=ThresholdTable(
+    ssti_pre_trade=PreTrade(threshold_floor=SumOfMoney('EUR', '50,000')),
+    lis_pre_trade=PreTrade(threshold_floor=SumOfMoney('EUR', '60,000')),
+    ssti_post_trade=PostTrade(threshold_floor=SumOfMoney('EUR', '90,000')),
+    lis_post_trade=PostTrade(threshold_floor=SumOfMoney('EUR', '100,000')),
+    )
+
 class_root.append(
     AssetClass(
         name="Financial contracts for differences (CFDs)",
-        ref="Table 11.x From page 87",
-        sub_asset_classes=[]
+        ref="Table 11.x",
+        sub_asset_classes=[
+        
+            # ---
+
+            SubAssetClass(
+                ref="Page 150 & 153 & 155",
+                name="Currency CFDs",
+                criteria=[
+                    UnderlyingCurrencyPairCriterion(
+                        description="a currency CFD sub-class is defined by the underlying "
+                                    "currency pair defined as combination of the two currencies "
+                                    "underlying the CFD/spread betting contract",
+                    ),
+                ],
+                thresholds=ThresholdSpecification(
+                    liquidity_criteria=LiquidityCriteria(
+                        average_daily_notional_amount=SumOfMoney('EUR', '50,000,000'),
+                        average_daily_number_of_trades=100,
+                    ),
+                    liquid_thresholds=common_cfd_liquid_thresholds,
+                    non_liquid_thresholds=common_cfd_non_liquid_thresholds,
+                ),
+            ),
+
+            # ---
+
+            SubAssetClass(
+                ref="Page 150 & 153 & 155",
+                name="Commodity CFDs",
+                criteria=[
+                    UnderlyingCommodityCriterion(
+                        description="a commodity CFD sub-class is defined by the underlying commodity of the "
+                                    "CFD/spread betting contract",
+                    ),
+                ],
+                thresholds=ThresholdSpecification(
+                    liquidity_criteria=LiquidityCriteria(
+                        average_daily_notional_amount=SumOfMoney('EUR', '50,000,000'),
+                        average_daily_number_of_trades=100,
+                    ),
+                    liquid_thresholds=common_cfd_liquid_thresholds,
+                    non_liquid_thresholds=common_cfd_non_liquid_thresholds,
+                ),
+            ),
+
+            # ---  
+
+            SubAssetClass(
+                ref="Page 151 & 153 & 155",
+                name="Equity CFDs",
+                criteria=[
+                    UnderlyingEquityCriterion(
+                        description="an equity CFD sub-class is defined by the underlying equity security of the "
+                                    "CFD/spread betting contract",
+                    ),
+                ],
+                thresholds=ThresholdSpecification(
+                    liquidity_criteria=LiquidityCriteria(
+                        qualitative_liquidity_criterion="an equity CFD sub-class is considered to "
+                                                        "have a liquid market if the underlying is an "
+                                                        "equity security for which there is a liquid "
+                                                        "market as determined in accordance with "
+                                                        "Article 2(1)(17)(b) of Regulation "
+                                                        "600/2014",
+                    ),
+                    liquid_thresholds=common_cfd_liquid_thresholds,
+                    non_liquid_thresholds=common_cfd_non_liquid_thresholds,
+                ),
+            ),
+
+            # ---  
+
+            SubAssetClass(
+                ref="Page 151 & 153 & 155",
+                name="Bond CFDs",
+                criteria=[
+                    UnderlyingBondCriterion(
+                        description="a bond CFD sub-class is defined by the underlying bond or bond future of the "
+                                    "CFD/spread betting contract",
+                    ),
+                ],
+                thresholds=ThresholdSpecification(
+                    liquidity_criteria=LiquidityCriteria(
+                        qualitative_liquidity_criterion="a bond CFD sub-class is considered to have "
+                                                        "a liquid market if the underlying is a bond "
+                                                        "or bond future for which there is a liquid "
+                                                        "market as determined in accordance with "
+                                                        "Articles 6 and 8(1)(b).",
+                    ),
+                    liquid_thresholds=common_cfd_liquid_thresholds,
+                    non_liquid_thresholds=common_cfd_non_liquid_thresholds,
+                ),
+            ),
+
+            # ---  
+
+            SubAssetClass(
+                ref="Page 151 & 154 & 155",
+                name="CFDs on an equity future/forward",
+                criteria=[
+                    UnderlyingFutureForwardCriterion(
+                        description="a CFD on an equity future/forward sub-class is defined by the underlying "
+                                    "future/forward on an equity of the CFD/spread betting contract",
+                    ),
+                ],
+                thresholds=ThresholdSpecification(
+                    liquidity_criteria=LiquidityCriteria(
+                        qualitative_liquidity_criterion="a CFD on an equity future/forward subclass "
+                                                        "is considered to have a liquid market "
+                                                        "if the underlying is an equity "
+                                                        "future/forward for which there is a liquid "
+                                                        "market as determined in accordance with "
+                                                        "Articles 6 and 8(1)(b).",
+                    ),
+                    liquid_thresholds=common_cfd_liquid_thresholds,
+                    non_liquid_thresholds=common_cfd_non_liquid_thresholds,
+                ),
+            ),
+
+            # ---  
+
+            SubAssetClass(
+                ref="Page 151 & 154 & 155",
+                name="CFDs on an equity option",
+                criteria=[
+                    UnderlyingEquityOptionCriterion(
+                        description="a CFD on an equity option sub-class is defined by the underlying option on "
+                                    "an equity of the CFD/spread betting contract",
+                    ),
+                ],
+                thresholds=ThresholdSpecification(
+                    liquidity_criteria=LiquidityCriteria(
+                        qualitative_liquidity_criterion="a CFD on an equity option sub-class is "
+                                                        "considered to have a liquid market if the "
+                                                        "underlying is an equity option for which "
+                                                        "there is a liquid market as determined in "
+                                                        "accordance with Articles 6 and 8(1)(b).",
+                    ),
+                    liquid_thresholds=common_cfd_liquid_thresholds,
+                    non_liquid_thresholds=common_cfd_non_liquid_thresholds,
+                ),
+            ),
+
+            # ---  
+
+            SubAssetClass(
+                ref="Page 152 & 154 & 155",
+                name="Other CFDs",
+                description="a CFD/spread betting that does not belong to any of the above sub-asset classes",
+                criteria=[ ],
+                thresholds=ThresholdSpecification(
+                    non_liquid_thresholds=common_cfd_non_liquid_thresholds,
+                ),
+            ),
+
+            # ---  
+
+        ]
     )
 )
 
 class_root.append(
     AssetClass(
         name="Emission allowances",
-        ref="Table 12.x From page 93",
+        ref="Table 12.x",
         sub_asset_classes=[]
     )
 )

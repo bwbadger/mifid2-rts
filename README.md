@@ -40,7 +40,7 @@ sample_classification.classification_dict()
 'Sub-asset class': 'Deliverable FX options (DO)', 
 'Segmentation criterion 1 description': 'underlying currency pair defined as combination of the two currencies underlying the derivative contract', 
 'Segmentation criterion 1': "('GBP', 'USD')", 
-'Segmentation criterion 2 description': 'time to maturity bucket of the swap defined as follows:’,
+'Segmentation criterion 2 description': 'time to maturity bucket of the swap defined as follows:',
 'Segmentation criterion 2': 'Maturity bucket 2: 1 week to 3 months', 
 } 
 ```

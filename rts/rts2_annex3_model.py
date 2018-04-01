@@ -519,9 +519,9 @@ class ValueOption(CriterionOption):
     def classification_dict(self):
         criterion_name = self.parent.criterion_name
         description_name = criterion_name + " description"
-        target_dict = {
-            criterion_name: self.value,
-            description_name: self.parent.description}
+        target_dict = collections.OrderedDict()
+        target_dict[description_name] = self.parent.description
+        target_dict[criterion_name] = self.value
         return target_dict
 
 
@@ -1331,9 +1331,9 @@ class DateBucketOption(object):
         """
         criterion_name = self.parent.criterion_name
         description_name = criterion_name + " description"
-        target_dict = {
-            criterion_name: self.name(),
-            description_name: self.parent.description}
+        target_dict = collections.OrderedDict()
+        target_dict[description_name] = self.parent.description
+        target_dict[criterion_name] = self.name()
         return target_dict
 
     def option_for_dates(self, from_date, to_date):

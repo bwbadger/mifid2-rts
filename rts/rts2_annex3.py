@@ -2935,9 +2935,55 @@ class_root.append(
 
 class_root.append(
     AssetClass(
-        name="Emission allowance derivatives",
-        ref="Table 13.x From page 96",
-        sub_asset_classes=[]
+        name="Emission Allowance Derivatives",
+        ref="Table 13.1, 13.2 and 13.3",
+        sub_asset_classes=[
+        
+            SubAssetClass(
+                name="Emission allowance derivatives whose underlying is of the type European Union Allowances (EUA)",
+                description="a financial instrument relating to emission allowances of the "
+                    "type European Union Allowances (EUA) as defined in Section C(4) of "
+                    "Annex I of Directive 2014/65/EU",
+                criteria=[ ],
+                thresholds=ThresholdSpecification(
+                    non_liquid_thresholds=common_cfd_non_liquid_thresholds,
+                ),
+            ),
+
+            SubAssetClass(
+                name="Emission allowance derivatives whose underlying is of the type European Union Aviation Allowances (EUAA)",
+                description="a financial instrument relating to emission allowances of the "
+                    "type European Union Aviation Allowances (EUAA) as defined in Section "
+                    "C(4) of Annex I of Directive 2014/65/EU",
+                criteria=[ ],
+                thresholds=ThresholdSpecification(
+                    non_liquid_thresholds=common_cfd_non_liquid_thresholds,
+                ),
+            ),
+
+            SubAssetClass(
+                name="Emission allowance derivatives whose underlying is of the type Certified Emission Reductions (CER)",
+                description="a financial instrument relating to emission allowances of the "
+                    "type Certified Emission Reductions (CER) as defined in Section C(4) of "
+                    "Annex I of Directive 2014/65/EU",
+                criteria=[ ],
+                thresholds=ThresholdSpecification(
+                    non_liquid_thresholds=common_cfd_non_liquid_thresholds,
+                ),
+            ),
+            
+            SubAssetClass(
+                name="Emission allowance derivatives whose underlying is of the type Emission Reduction Units (ERU)",
+                description="a financial instrument relating to emission allowances of the "
+                    "type Emission Reduction Units (ERU) as defined in Section C(4) of "
+                    "Annex I of Directive 2014/65/EU",
+                criteria=[ ],
+                thresholds=ThresholdSpecification(
+                    non_liquid_thresholds=common_cfd_non_liquid_thresholds,
+                ),
+            ),
+            
+        ]
     )
 )
 

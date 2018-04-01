@@ -202,8 +202,8 @@ class AssetClass(TaxonomyNode):
 class SubAssetClass(TaxonomyNode):
     def __init__(
             self,
-            ref,
             name,
+            ref=None, 
             description=None,
             criteria=None,
             thresholds=None,):
@@ -251,7 +251,11 @@ class SubAssetClass(TaxonomyNode):
         return classification
 
     def full_name(self):
-        return "Sub-asset class: {name} (ref={ref}).".format(name=self.name, ref=self.ref)
+        if self.ref:
+            ref_string = "(ref={ref})".format(ref=self.ref)
+        else:
+            ref_string = ""
+        return "Sub-asset class: {name} {ref}".format(name=self.name, ref=ref_string)
 
     def path_name(self):
         return self.parent.path_name() + "\n" + self.full_name()

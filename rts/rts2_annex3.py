@@ -36,58 +36,50 @@ __copyright__ = "Copyright (c) 2017 Bruce Badger"
 __license__ = "BSD-3-Clause"
 
 """
-This is an implementation of the rules defined here:
-http://ec.europa.eu/finance/securities/docs/isd/mifid/rts/160714-rts-2-annex_en.pdf
-This is the annex to RTS 2.  The index to all MiFID Technical Standards documents is here:
-http://ec.europa.eu/finance/securities/docs/isd/mifid/its-rts-overview-table_en.pdf
-As far as possible the terminology is taken directly from the Annex to RTS 2.
+This is an implementation of the rules defined in annex 3 of RTS 2:
+http://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:32017R0583&rid=1
+As far as possible the terminology is taken directly from RTS 2.
 """
 
 from rts2_annex3_model import *
 
 class_root = AssetClassSet(
-    version_id="Brussels, 14.7.2016 C(2016) 4301 final ANNEXES 1 to 4",
+    version_id="EU 2017/583 of 14 July 2016",
 )
 
 
 class_root.append(
     AssetClass(
         name="Bonds (all bond types except ETCs and ETNs)",
-        ref="Table 2.x From page 13",
+        ref="Table 2.1, 2.2 and 2.3",
         sub_asset_classes=[
 
             SubAssetClass(
-                ref="Page 14 & 15",
                 name="Sovereign Bond",
                 criteria=[],
             ),
 
             SubAssetClass(
-                ref="Page 14 & 15",
                 name="Other Public Bond",
                 criteria=[],
             ),
 
             SubAssetClass(
-                ref="Page 14 & 15",
                 name="Convertible Bond",
                 criteria=[],
             ),
 
             SubAssetClass(
-                ref="Page 14 & 15",
                 name="Covered Bond",
                 criteria=[],
             ),
 
             SubAssetClass(
-                ref="Page 14 & 15",
                 name="Corporate Bond",
                 criteria=[],
             ),
 
             SubAssetClass(
-                ref="Page 14 & 15",
                 name="Other Bond",
                 criteria=[],
             ),
@@ -98,8 +90,28 @@ class_root.append(
 
 class_root.append(
     AssetClass(
+        name="Bonds (ETC and ETN bond types)",
+        ref="Table 2.4 and 2.5",
+        sub_asset_classes=[
+
+            SubAssetClass(
+                name="Exchange Traded Commodities (ETCs)",
+                criteria=[],
+            ),
+
+            SubAssetClass(
+                name="Exchange Traded Commodities (ETCs)",
+                criteria=[],
+            ),
+
+        ]
+    )
+)
+
+class_root.append(
+    AssetClass(
         name="Structured Finance Products (SFPs)",
-        ref="Table 3.x From page 18",
+        ref="Table 3.x",
         sub_asset_classes=[]
     )
 )
@@ -107,7 +119,7 @@ class_root.append(
 class_root.append(
     AssetClass(
         name="Securitised Derivatives",
-        ref="Table 4.x From page 21",
+        ref="Table 4.x",
         sub_asset_classes=[]
     )
 )

@@ -2663,14 +2663,13 @@ class_root.append(
 
 class_root.append(
     AssetClass(
-        name="C10 derivatives",
-        ref="Table 10.x From page 83",
+        name="C10 Derivatives",
+        ref="Table 10.1, 10.2 and 10.3",
         sub_asset_classes=[
 
             # ---
 
             SubAssetClass(
-                ref="Page 83 & 85 & 86",
                 name="Freight derivatives",
                 description="a financial instrument relating to freight rates as defined in " \
                             "Section C(10) of Annex I of Directive 2014/65/EU",
@@ -2731,7 +2730,6 @@ class_root.append(
             # ---
 
             SubAssetClass(
-                ref="Page 84 & 86",
                 name="Other C10 derivatives",
                 description="a financial instrument as defined in Section C(10) of Annex I of "
                             "Directive 2014/65/EU which is not a 'Freight derivative', any of the "

@@ -2171,13 +2171,10 @@ common_fx_thresholds = \
 class_root.append(
     AssetClass(
         name="Foreign Exchange Derivatives",
-        ref="Table 8.x From page 70",
+        ref="Table 8.1 and 8.2",
         sub_asset_classes=[
 
-            # ---
-
             SubAssetClass(
-                ref="Page 70 & 75",
                 name="Non-deliverable forward (NDF)",
                 criteria=[
                     UnderlyingCurrencyPairCriterion(
@@ -2198,10 +2195,7 @@ class_root.append(
                 thresholds=common_fx_thresholds,  # See above
             ),
 
-            # ---
-
             SubAssetClass(
-                ref="Page 71 & 75",
                 name="Deliverable forward (DF)",
                 criteria=[
                     UnderlyingCurrencyPairCriterion(
@@ -2222,10 +2216,7 @@ class_root.append(
                 thresholds=common_fx_thresholds,  # See above
             ),
 
-            # ---
-
             SubAssetClass(
-                ref="Page 71 & 75",
                 name="Non-Deliverable FX options (NDO)",
                 criteria=[
                     UnderlyingCurrencyPairCriterion(
@@ -2246,10 +2237,7 @@ class_root.append(
                 thresholds=common_fx_thresholds,  # See above
             ),
 
-            # ---
-
             SubAssetClass(
-                ref="Page 72 & 75",
                 name="Deliverable FX options (DO)",
                 criteria=[
                     UnderlyingCurrencyPairCriterion(
@@ -2270,10 +2258,7 @@ class_root.append(
                 thresholds=common_fx_thresholds,  # See above
             ),
 
-            # ---
-
             SubAssetClass(
-                ref="Page 72 & 75",
                 name="Non-Deliverable FX swaps (NDS)",
                 criteria=[
                     UnderlyingCurrencyPairCriterion(
@@ -2294,10 +2279,7 @@ class_root.append(
                 thresholds=common_fx_thresholds,  # See above
             ),
 
-            # ---
-
             SubAssetClass(
-                ref="Page 73 & 75",
                 name="Deliverable FX swaps (DS)",
                 criteria=[
                     UnderlyingCurrencyPairCriterion(
@@ -2318,10 +2300,7 @@ class_root.append(
                 thresholds=common_fx_thresholds,  # See above
             ),
 
-            # ---
-
             SubAssetClass(
-                ref="Page 73 & 75",
                 name="FX futures",
                 criteria=[
                     UnderlyingCurrencyPairCriterion(
@@ -2342,16 +2321,11 @@ class_root.append(
                 thresholds=common_fx_thresholds,  # See above
             ),
 
-            # ---
-
             SubAssetClass(
-                ref="Page 74 & 75",
                 name="Other Foreign Exchange Derivatives",
                 description="an FX derivative that does not belong to any of the above sub-asset classes",
                 thresholds=common_fx_thresholds,  # See above
             )
-
-            # ---
 
         ]
     )

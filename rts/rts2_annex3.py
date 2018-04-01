@@ -127,14 +127,11 @@ class_root.append(
 class_root.append(
     AssetClass(
         name="Interest Rate Derivatives",
-        ref="Table 5.x From page 23",
+        ref="Table 5.1, 5.2 and 5.3",
 
         sub_asset_classes=[
 
-            # ---
-
             SubAssetClass(
-                ref="Page 23 & 33 & 38",
                 name="Bond futures/forwards",
                 criteria=[
                     UnderlyingIssuerCriterion(description="issuer of the underlying"),
@@ -200,10 +197,7 @@ class_root.append(
                 ),
             ),
 
-            # ---
-
             SubAssetClass(
-                ref="Page 24 & 33 & 38",
                 name="Bond options",
                 criteria=[
                     UnderlyingInstrumentCriterion(description="underlying bond or underlying bond future/forward"),
@@ -243,10 +237,7 @@ class_root.append(
                 ),
             ),
 
-            # ---
-
             SubAssetClass(
-                ref="Page 24 & 33 & 38",
                 name="IR futures and FRA",
                 criteria=[
                     UnderlyingInterestRateCriterion(description="underlying interest rate"),
@@ -294,10 +285,7 @@ class_root.append(
                 ),
             ),
 
-            # ---
-
             SubAssetClass(
-                ref="Page 25 & 34 & 38",
                 name="IR options",
                 criteria=[
                     UnderlyingInterestRateCriterion(description="underlying interest rate or underlying "
@@ -340,10 +328,7 @@ class_root.append(
                 ),
             ),
 
-            # ---
-
             SubAssetClass(
-                ref="Page 26 & 34 & 38",
                 name="Swaptions",
                 criteria=[
                     UnderlyingSwapTypeCriterion(
@@ -417,10 +402,7 @@ class_root.append(
                 ),
             ),
 
-            # ---
-
             SubAssetClass(
-                ref="Page 27 & 34 & 39",
                 name="Fixed-to-Float 'multi-currency swaps' or 'cross-currency swaps' and futures/forwards "
                      "on Fixed-to-Float 'multi-currency swaps' or 'cross-currency swaps'",
                 description="a swap or a future/forward on a swap where two parties exchange cash flows "
@@ -469,10 +451,7 @@ class_root.append(
                 ),
             ),
 
-            # ---
-
             SubAssetClass(
-                ref="Page 27 & 35 & 39",
                 name="Float-to-Float 'multi-currency swaps' or 'cross-currency swaps' and futures/forwards "
                      "on Float-to-Float 'multi-currency swaps' or 'cross-currency swaps'",
                 description="a swap or a future/forward on a swap where two parties exchange cash flows "
@@ -520,10 +499,7 @@ class_root.append(
                 ),
             ),
 
-            # ---
-
             SubAssetClass(
-                ref="Page 28 & 35 & 39",
                 name="Fixed-to-Fixed 'multi-currency swaps' or 'cross-currency swaps' and futures/forwards "
                      "on Fixed-to-Fixed 'multi-currency swaps' or 'cross-currency swaps'",
                 description="a swap or a future/forward on a swap where two parties exchange cash flows "
@@ -571,10 +547,7 @@ class_root.append(
                 ),
             ),
 
-            # ---
-
             SubAssetClass(
-                ref="Page 28 & 35 & 39",
                 name="Overnight Index Swap (OIS) 'multi-currency swaps' or 'cross-currency swaps' and futures/forwards "
                      "on Overnight Index Swap (OIS) 'multi-currency swaps' or 'cross-currency swaps'",
                 description="a swap or a future/forward on a swap where two parties exchange cash flows denominated "
@@ -622,10 +595,7 @@ class_root.append(
                 ),
             ),
 
-            # ---
-
             SubAssetClass(
-                ref="Page 29 & 36 & 40",
                 name="Inflation 'multi-currency swaps' or 'cross-currency swaps' and futures/forwards on Inflation "
                      "'multi-currency swaps' or 'cross-currency swaps'",
                 description="a swap or a future/forward on a swap where two parties exchange cash flows denominated "
@@ -673,10 +643,7 @@ class_root.append(
                 ),
             ),
 
-            # ---
-
             SubAssetClass(
-                ref="Page 29 & 36 & 40",
                 name="Fixed-to-Float 'single currency swaps' and futures/forwards "
                      "on Fixed-to-Float 'single currency swaps'",
                 description="a swap or a future/forward on a swap where two parties exchange cash flows denominated in "
@@ -723,10 +690,7 @@ class_root.append(
                 ),
             ),
 
-            # ---
-
             SubAssetClass(
-                ref="Page 30 & 36 & 40",
                 name="Float-to-Float 'single currency swaps' and futures/forwards on "
                      "Float-to-Float 'single currency swaps'",
                 description="a swap or a future/forward on a swap where two parties exchange cash flows "
@@ -773,10 +737,7 @@ class_root.append(
                 ),
             ),
 
-            # ---
-
             SubAssetClass(
-                ref="Page 30 & 37 & 40",
                 name="Fixed-to-Fixed 'single currency swaps' and futures/forwards on "
                      "Fixed-to-Fixed 'single currency swaps'",
                 description="a swap or a future/forward on a swap where two parties exchange cash flows "
@@ -823,10 +784,7 @@ class_root.append(
                 ),
             ),
 
-            # ---
-
             SubAssetClass(
-                ref="Page 31 & 37 & 41",
                 name="Overnight Index Swap (OIS) 'single currency swaps' and futures/forwards on "
                      "Overnight Index Swap (OIS) 'single currency swaps'",
                 description="a swap or a future/forward on a swap where two parties exchange cash flows "
@@ -873,10 +831,7 @@ class_root.append(
                 ),
             ),
 
-            # ---
-
             SubAssetClass(
-                ref="Page 31 & 37 & 41",
                 name="Inflation 'single currency swaps' and futures/forwards on Inflation 'single currency swaps'",
                 description="a swap or a future/forward on a swap where two parties exchange cash flows denominated "
                             "in the same currency and where the cash flows of at least one leg are determined by an "
@@ -922,10 +877,7 @@ class_root.append(
                 ),
             ),
 
-            # ---
-
             SubAssetClass(
-                ref="Page 32 & (no table 5.2 entry) & 41",
                 name="Other Interest Rate Derivatives",
                 description="an interest rate derivative that does not belong to any of the above sub-asset classes",
                 thresholds=ThresholdSpecification(

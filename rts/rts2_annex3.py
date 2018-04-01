@@ -2425,14 +2425,11 @@ common_credit_non_liquid_thresholds = \
 class_root.append(
     AssetClass(
         name="Credit Derivatives",
-        ref="Table 9.x From page 76",
+        ref="Table 9.1, 9.2 and 9.3",
         sub_asset_classes=[
 
-            # ---
-
             SubAssetClass(
-                ref="Page 76 & 80 & 82",
-                name="Index credit default swap (CDS )",
+                name="Index credit default swap (CDS)",
                 description="a swap whose exchange of cash flows is linked to the creditworthiness of " \
                             "several issuers of financial instruments composing an index and the " \
                             "occurrence of credit events",
@@ -2480,11 +2477,8 @@ class_root.append(
                 ),
             ),
 
-            # ---
-
             SubAssetClass(
-                ref="Page 77 & 80 & 82",
-                name="Single name credit default swap (CDS )",
+                name="Single name credit default swap (CDS)",
                 description="a swap whose exchange of cash flows is linked to the creditworthiness of "
                             "one issuer of financial instruments and the occurrence of credit events",
                 criteria=[
@@ -2531,15 +2525,13 @@ class_root.append(
                     non_liquid_thresholds=common_credit_non_liquid_thresholds,  # See above
                 ),
             ),
-
-            # ---
-
-            #  What about "Bespoke basket credit default swap (CDS)" referred to on page 80 & 82?
-
-            # ---
+            
+            SubAssetClass(
+                name="Bespoke basket credit default swap (CDS)",
+                criteria=[], 
+            ), 
 
             SubAssetClass(
-                ref="Page 78 & 81",
                 name="CDS index options",
                 description="an option whose underlying is a CDS index",
                 criteria=[
@@ -2573,10 +2565,7 @@ class_root.append(
                 ),
             ),
 
-            # ---
-
             SubAssetClass(
-                ref="Page 78 & 81 & 82",
                 name="Single name CDS options",
                 description="an option whose underlying is a single name CDS",
                 criteria=[
@@ -2611,10 +2600,7 @@ class_root.append(
                 ),
             ),
 
-            # ---
-
             SubAssetClass(
-                ref="Page 79 & (no table 9.2 entry) & 82",
                 name="Other credit derivatives",
                 description="a credit derivative that does not belong to any of the above sub-asset classes",
                 thresholds=ThresholdSpecification(
@@ -2622,11 +2608,8 @@ class_root.append(
                 ),
             )
 
-            # ---
-
         ],
     )
-
 )
 
 class_root.append(

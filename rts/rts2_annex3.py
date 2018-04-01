@@ -2877,9 +2877,59 @@ class_root.append(
 
 class_root.append(
     AssetClass(
-        name="Emission allowances",
-        ref="Table 12.x",
-        sub_asset_classes=[]
+        name="Emission Allowances",
+        ref="Table 12.1, 12.2 and 12.3",
+        sub_asset_classes=[
+        
+            SubAssetClass(
+                name="European Union Allowances (EUA)",
+                description="any unit recognised for compliance with the requirements of "
+                    "Directive 2003/87/EC of the European Parliament and  of  the  Council(1) "
+                    "(Emissions Trading Scheme)  which represents the right to emit the "
+                    "equivalent to 1 tonne of carbon dioxide equivalent (tCO2e)",
+                criteria=[ ],
+                thresholds=ThresholdSpecification(
+                    non_liquid_thresholds=common_cfd_non_liquid_thresholds,
+                ),
+            ),
+
+            SubAssetClass(
+                name="European Union Aviation Allowances (EUAA)",
+                description="any unit recognised for compliance with the requirements of "
+                    "Directive 2003/87/EC (Emissions Trading Scheme) which represents the "
+                    "right to emit the equivalent to 1 tonne of carbon dioxide equivalent "
+                    "(tCO2e) from aviation ",
+                criteria=[ ],
+                thresholds=ThresholdSpecification(
+                    non_liquid_thresholds=common_cfd_non_liquid_thresholds,
+                ),
+            ),
+
+            SubAssetClass(
+                name="Certified Emission Reductions (CER)",
+                description="any unit recognised for compliance with the requirements of "
+                    "Directive 2003/87/EC (Emissions Trading Scheme) which represents the "
+                    "emissions reduction equivalent to 1 tonne of carbon dioxide equivalent "
+                    "(tCO2e)",
+                criteria=[ ],
+                thresholds=ThresholdSpecification(
+                    non_liquid_thresholds=common_cfd_non_liquid_thresholds,
+                ),
+            ),
+
+            SubAssetClass(
+                name="Emission Reduction Units (ERU)",
+                description="any unit recognised for compliance with the requirements of "
+                    "Directive 2003/87/EC (Emissions Trading Scheme) which represents the "
+                    "emissions reduction equivalent to 1 tonne of carbon dioxide equivalent "
+                    "(tCO2e)",
+                criteria=[ ],
+                thresholds=ThresholdSpecification(
+                    non_liquid_thresholds=common_cfd_non_liquid_thresholds,
+                ),
+            ),
+
+        ]
     )
 )
 

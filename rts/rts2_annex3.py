@@ -948,13 +948,10 @@ class_root.append(
 class_root.append(
     AssetClass(
         name="Equity Derivatives",
-        ref="Table 6.x From page 42",
+        ref="Table 6.1, 6.2 and 6.3",
         sub_asset_classes=[
 
-            # ---
-
             SubAssetClass(
-                ref="Page 42 & 48",
                 name="Stock index options",
                 criteria=[
                     UnderlyingStockIndexCriterion(
@@ -995,10 +992,7 @@ class_root.append(
                 ),
             ),
 
-            # ---
-
             SubAssetClass(
-                ref="Page 42 & 48",
                 name="Stock index futures/ forwards",
                 criteria=[
                     UnderlyingStockIndexCriterion(
@@ -1046,10 +1040,7 @@ class_root.append(
                 ),
             ),
 
-            # ---
-
             SubAssetClass(
-                ref="Page 42 & 49",
                 name="Stock options",
                 criteria=[
                     UnderlyingShareCriterion(
@@ -1090,10 +1081,7 @@ class_root.append(
                 ),
             ),
 
-            # ---
-
             SubAssetClass(
-                ref="Page 42 & 49",
                 name="Stock futures/ forwards",
                 criteria=[
                     UnderlyingShareCriterion(
@@ -1134,10 +1122,7 @@ class_root.append(
                 ),
             ),
 
-            # ---
-
             SubAssetClass(
-                ref="Page 43 & 49",
                 name="Stock dividend options",
                 criteria=[
                     UnderlyingShareEntitlingToDividendsCriterion(
@@ -1178,10 +1163,7 @@ class_root.append(
                 ),
             ),
 
-            # ---
-
             SubAssetClass(
-                ref="Page 43 & 50",
                 name="Stock dividend futures/ forwards",
                 criteria=[
                     UnderlyingShareEntitlingToDividendsCriterion(
@@ -1222,10 +1204,7 @@ class_root.append(
                 ),
             ),
 
-            # ---
-
             SubAssetClass(
-                ref="Page 43 & 50",
                 name="Dividend index options",
                 criteria=[
                     UnderlyingDividendIndexCriterion(
@@ -1266,10 +1245,7 @@ class_root.append(
                 ),
             ),
 
-            # ---
-
             SubAssetClass(
-                ref="Page 43 & 51",
                 name="Dividend index futures/ forwards",
                 criteria=[
                     UnderlyingDividendIndexCriterion(
@@ -1317,10 +1293,7 @@ class_root.append(
                 ),
             ),
 
-            # ---
-
             SubAssetClass(
-                ref="Page 43 & 51",
                 name="Volatility index options",
                 criteria=[
                     UnderlyingVolatilityIndexCriterion(
@@ -1361,10 +1334,7 @@ class_root.append(
                 ),
             ),
 
-            # ---
-
             SubAssetClass(
-                ref="Page 44 & 52",
                 name="Volatility index futures/ forwards",
                 criteria=[
                     UnderlyingVolatilityIndexCriterion(
@@ -1412,10 +1382,7 @@ class_root.append(
                 ),
             ),
 
-            # ---
-
             SubAssetClass(
-                ref="Page 44 & 52",
                 name="ETF options",
                 criteria=[
                     UnderlyingETFCriterion(
@@ -1456,10 +1423,7 @@ class_root.append(
                 ),
             ),
 
-            # ---
-
             SubAssetClass(
-                ref="Page 44 & 53",
                 name="ETF futures/ forwards",
                 criteria=[
                     UnderlyingETFCriterion(
@@ -1500,10 +1464,7 @@ class_root.append(
                 ),
             ),
 
-            # ---
-
             SubAssetClass(
-                ref="Page 45 & 54 & 56",
                 name="Swaps",
                 criteria=[
                     UnderlyingEquityTypeCriterion("underlying type: single name, index, basket"),
@@ -1583,10 +1544,7 @@ class_root.append(
                 ),
             ),
 
-            # ---
-
             SubAssetClass(
-                ref="Page 46 & 55 & 56",
                 name="Portfolio Swaps",
                 criteria=[
                     UnderlyingEquityTypeCriterion("underlying type: single name, index, basket"),
@@ -1643,10 +1601,7 @@ class_root.append(
                 ),
             ),
 
-            # ---
-
             SubAssetClass(
-                ref="Page 47 & (no entry in table 6.2) & 56",
                 name="Other equity derivatives",
                 thresholds=ThresholdSpecification(
                     non_liquid_thresholds=ThresholdTable(
@@ -1657,6 +1612,7 @@ class_root.append(
                     ),
                 ),
             ),
+            
         ]
     )
 )

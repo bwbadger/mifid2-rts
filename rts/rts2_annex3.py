@@ -2785,13 +2785,10 @@ common_cfd_non_liquid_thresholds=ThresholdTable(
 class_root.append(
     AssetClass(
         name="Financial contracts for differences (CFDs)",
-        ref="Table 11.x",
+        ref="Table 11.1, 11.3 and 11.3",
         sub_asset_classes=[
-        
-            # ---
 
             SubAssetClass(
-                ref="Page 150 & 153 & 155",
                 name="Currency CFDs",
                 criteria=[
                     UnderlyingCurrencyPairCriterion(
@@ -2810,10 +2807,7 @@ class_root.append(
                 ),
             ),
 
-            # ---
-
             SubAssetClass(
-                ref="Page 150 & 153 & 155",
                 name="Commodity CFDs",
                 criteria=[
                     UnderlyingCommodityCriterion(
@@ -2831,10 +2825,7 @@ class_root.append(
                 ),
             ),
 
-            # ---  
-
             SubAssetClass(
-                ref="Page 151 & 153 & 155",
                 name="Equity CFDs",
                 criteria=[
                     UnderlyingEquityCriterion(
@@ -2856,10 +2847,7 @@ class_root.append(
                 ),
             ),
 
-            # ---  
-
             SubAssetClass(
-                ref="Page 151 & 153 & 155",
                 name="Bond CFDs",
                 criteria=[
                     UnderlyingBondCriterion(
@@ -2880,10 +2868,7 @@ class_root.append(
                 ),
             ),
 
-            # ---  
-
             SubAssetClass(
-                ref="Page 151 & 154 & 155",
                 name="CFDs on an equity future/forward",
                 criteria=[
                     UnderlyingFutureForwardCriterion(
@@ -2905,10 +2890,7 @@ class_root.append(
                 ),
             ),
 
-            # ---  
-
             SubAssetClass(
-                ref="Page 151 & 154 & 155",
                 name="CFDs on an equity option",
                 criteria=[
                     UnderlyingEquityOptionCriterion(
@@ -2929,10 +2911,7 @@ class_root.append(
                 ),
             ),
 
-            # ---  
-
             SubAssetClass(
-                ref="Page 152 & 154 & 155",
                 name="Other CFDs",
                 description="a CFD/spread betting that does not belong to any of the above sub-asset classes",
                 criteria=[ ],
@@ -2940,8 +2919,6 @@ class_root.append(
                     non_liquid_thresholds=common_cfd_non_liquid_thresholds,
                 ),
             ),
-
-            # ---  
 
         ]
     )

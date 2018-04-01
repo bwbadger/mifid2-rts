@@ -1665,13 +1665,10 @@ class_root.append(
 class_root.append(
     AssetClass(
         name="Commodity Derivatives",
-        ref="Table 7.x From page 57",
+        ref="Table 7.1, 7.3 and 7.3",
         sub_asset_classes=[
 
-            # ---
-
             SubAssetClass(
-                ref="Page 57 & 65 & 68",
                 name="Metal commodity futures/forwards",
                 criteria=[
                     MetalTypeCriterion("metal type: precious metal, non-precious metal"),
@@ -1729,10 +1726,7 @@ class_root.append(
                 ),
             ),
 
-            # ---
-
             SubAssetClass(
-                ref="Page 58 & 65 & 68",
                 name="Metal commodity options",
                 criteria=[
                     MetalTypeCriterion("metal type: precious metal, non-precious metal"),
@@ -1790,10 +1784,7 @@ class_root.append(
                 ),
             ),
 
-            # ---
-
             SubAssetClass(
-                ref="Page 59 & 65 & 68",
                 name="Metal commodity swaps",
                 criteria=[
                     MetalTypeCriterion("metal type: precious metal, non-precious metal"),
@@ -1852,10 +1843,7 @@ class_root.append(
                 ),
             ),
 
-            # ---
-
             SubAssetClass(
-                ref="Page 60 & 66 & 68",
                 name="Energy commodity futures/forwards",
                 criteria=[
                     EnergyTypeCriterion("energy type: oil, oil distillates, coal, oil light ends, "
@@ -1925,10 +1913,7 @@ class_root.append(
                 ),
             ),
 
-            # ---
-
             SubAssetClass(
-                ref="Page 61 & 66 & 68",
                 name="Energy commodity options",
                 criteria=[
                     EnergyTypeCriterion("energy type: oil, oil distillates, coal, oil light ends, "
@@ -1998,10 +1983,7 @@ class_root.append(
                 ),
             ),
 
-            # ---
-
             SubAssetClass(
-                ref="Page 62 & 66 & 69",
                 name="Energy commodity swaps",
                 criteria=[
                     EnergyTypeCriterion("energy type: oil, oil distillates, coal, oil light ends, "
@@ -2072,10 +2054,7 @@ class_root.append(
                 ),
             ),
 
-            # ---
-
             SubAssetClass(
-                ref="Page 63 & 66 & 69",
                 name="Agricultural commodity futures/forwards",
                 criteria=[
                     UnderlyingAgriculturalCriterion("underlying agricultural commodity"),
@@ -2118,10 +2097,7 @@ class_root.append(
                 ),
             ),
 
-            # ---
-
             SubAssetClass(
-                ref="Page 63 & 67 & 69",
                 name="Agricultural commodity options",
                 criteria=[
                     UnderlyingAgriculturalCriterion("underlying agricultural commodity"),
@@ -2164,10 +2140,7 @@ class_root.append(
                 ),
             ),
 
-            # ---
-
             SubAssetClass(
-                ref="Page 64 & 67 & 69",
                 name="Agricultural commodity swaps",
                 criteria=[
                     UnderlyingAgriculturalCriterion("underlying agricultural commodity"),
@@ -2211,10 +2184,7 @@ class_root.append(
                 ),
             ),
 
-            # ---
-
             SubAssetClass(
-                ref="Page 64 & (No entry in table 7.2) & 69",
                 name="Other commodity derivatives",
                 thresholds=ThresholdSpecification(
                     non_liquid_thresholds=ThresholdTable(
@@ -2225,8 +2195,6 @@ class_root.append(
                     ),
                 ),
             )
-
-            # ---
 
         ]
     )

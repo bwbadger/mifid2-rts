@@ -8,7 +8,7 @@ For an overview of the context and the objectives of the project, see [this vide
 
 The regulator [ESMA (European Securities and Markets Authority)](https://en.wikipedia.org/wiki/European_Securities_and_Markets_Authority) have been entrusted with enacting MiFID II.  ESMA have produced documents which define what firms need to do to comply with MiFID II, a key set of which are the RTS (Regulatory Technical Standards) documents.  Here we are focused on the [final 14th July 2016 version of RTS 2](http://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:32017R0583&rid=1).  An early 2015 draft of the full set of RTS documents can be read [here](https://www.esma.europa.eu/sites/default/files/library/2015/11/2015-esma-1464_annex_i_-_draft_rts_and_its_on_mifid_ii_and_mifir.pdf).
 
-The code in this GitHub repository implements the taxonomies defined in RTS 2 Annex 3 (page 72 of the RTS PDF) and in RTS 23 table 2 (page 469).
+The code in this GitHub repository implements the taxonomies defined in RTS 2 Annex 3 and in RTS 23 table 2.
 
 The hope is that we can use this code either as an example of, or as the basis of, a body of code which is a working executable model of all MiFID II Regulatory Technical Standards, together with a body of test data which can illustrate how the technical standards are intended to work in practice.
 

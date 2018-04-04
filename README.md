@@ -2,7 +2,9 @@
 
 This project implements an executable form of the MiFID II RTS (Regulatory Technical Standard) documents.
 
-For an overview of the context and the objectives of the project, see [this video](https://www.youtube.com/watch?v=kmV2jDNgH-Q).
+Here are some introductory videos:
+* [An overview of the context and the objectives of the project](https://www.youtube.com/watch?v=kmV2jDNgH-Q).
+* [How to download the code from GitHub and run it](https://youtu.be/Hoo31-LJi4s).
 
 [MiFID (Markets in Financial Instruments Directive)](https://en.wikipedia.org/wiki/Markets_in_Financial_Instruments_Directive_2004) is EU law for the regulation of the financial industry.  The [original MiFID](http://eur-lex.europa.eu/LexUriServ/LexUriServ.do?uri=CELEX:32004L0039:EN:HTML) was introduced in 2004, and following the 2007/8 financial crisis a second version, [MiFID II](https://www.esma.europa.eu/policy-rules/mifid-ii-and-mifir), was introduced in 2014.
 

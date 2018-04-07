@@ -96,11 +96,24 @@ class_root.append(
 
             SubAssetClass(
                 name="Exchange Traded Commodities (ETCs)",
+                description=\
+                    "a debt instrument issued against a direct investment by the "
+                    "issuer in commodities or commodities derivative contracts.  "
+                    "The price of an  ETC  is  directly or indirectly linked to "
+                    "the performance of the underlying.  An ETC passively tracks "
+                    "the performance of the commodity or commodity indices to "
+                    "which it refers.", 
                 criteria=[],
             ),
 
             SubAssetClass(
-                name="Exchange Traded Commodities (ETCs)",
+                name="Exchange Traded Notes (ETNs)",
+                description=\
+                    "a debt instrument issued against a direct investment by the "
+                    "issuer in the underlying or underlying derivative contracts.  "
+                    "The  price  of  an  ETN  is  directly or indirectly linked to "
+                    "the performance of the underlying.  An ETN passively tracks "
+                    "the performance of the underlying to which it refers.", 
                 criteria=[],
             ),
 
@@ -111,7 +124,7 @@ class_root.append(
 class_root.append(
     AssetClass(
         name="Structured Finance Products (SFPs)",
-        ref="Table 3.x",
+        ref="Table 3.1, 3.2 and 3.3",
         sub_asset_classes=[]
     )
 )
@@ -119,7 +132,7 @@ class_root.append(
 class_root.append(
     AssetClass(
         name="Securitised Derivatives",
-        ref="Table 4.x",
+        ref="Table 4.1 and 4.2",
         sub_asset_classes=[]
     )
 )

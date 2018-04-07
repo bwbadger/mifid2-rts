@@ -155,7 +155,7 @@ class AssetClassSet(TaxonomyNode):
         be returned in a list.
         """
         sample_list=[]
-        a_sink = sink or lambda x: sample_list.append(x)
+        a_sink = sink or (lambda x: sample_list.append(x))
         number_of_children = len(self.children)
         for _ in range(number):
             random_child = self.children[random.randint(0, number_of_children - 1)]

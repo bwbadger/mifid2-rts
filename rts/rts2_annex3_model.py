@@ -30,17 +30,27 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 __author__ = "Bruce Badger"
-__copyright__ = "Copyright (c) 2017 Bruce Badger"
+__copyright__ = "Copyright (c) 2017-2018 Bruce Badger"
 __license__ = "BSD-3-Clause"
 
 import datetime
 import calendar
 import collections
+import random
 
 import rts23_table2
 
 import locale
 locale.setlocale(locale.LC_ALL, '')
+
+
+class SampleTrade(object):
+    """
+    This class is used by the test data generation code.  The classes
+    have no instance variables by default, they are force fed the 
+    values they need.
+    """
+    pass
 
 
 class TaxonomyNode(object):
@@ -136,6 +146,21 @@ class AssetClassSet(TaxonomyNode):
         for asset_class in self.children:
             sub_asset_class_list.extend(asset_class.children)
         return sub_asset_class_list
+
+    def make_test_samples(self, number, sink=None):
+        """
+        Synthesize a number of sample trades from my asset classes.  If
+        a sink function/lambda is given this will be called with each
+        sample as it is generated, otherwise the generated trades will
+        be returned in a list.
+        """
+        sample_list=[]
+        a_sink = sink or lambda x: sample_list.append(x)
+        number_of_children = len(self.children)
+        for _ in range(number):
+            random_child = self.children[random.randint(0, number_of_children - 1)]
+            sample = random_child.make_test_samples(number=1, sink=a_sink)
+        return sample_list
 
 
 class AssetClass(TaxonomyNode):

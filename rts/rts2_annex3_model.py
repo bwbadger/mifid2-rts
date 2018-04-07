@@ -84,6 +84,22 @@ class TaxonomyNode(object):
             return [self]
         else:
             return self.parent.parents.append(self)
+        
+    def make_test_samples(self, number, sink=None):
+        """
+        Synthesize a number of sample trades from my children.  If
+        a sink function/lambda is given this will be called with each
+        sample as it is generated and an empty list will be returned.
+        If no sink is given the samples will be gathered in a list and
+        the complete list will be returned.
+        """
+        sample_list=[]
+        a_sink = sink or (lambda x: sample_list.append(x))
+        number_of_children = len(self.children)
+        for _ in range(number):
+            random_child = self.children[random.randint(0, number_of_children - 1)]
+            sample = random_child.make_test_samples(number=1, sink=a_sink)
+        return sample_list
 
 
 class AssetClassSet(TaxonomyNode):
@@ -146,22 +162,6 @@ class AssetClassSet(TaxonomyNode):
         for asset_class in self.children:
             sub_asset_class_list.extend(asset_class.children)
         return sub_asset_class_list
-
-    def make_test_samples(self, number, sink=None):
-        """
-        Synthesize a number of sample trades from my asset classes.  If
-        a sink function/lambda is given this will be called with each
-        sample as it is generated, otherwise the generated trades will
-        be returned in a list.
-        """
-        sample_list=[]
-        a_sink = sink or (lambda x: sample_list.append(x))
-        number_of_children = len(self.children)
-        for _ in range(number):
-            random_child = self.children[random.randint(0, number_of_children - 1)]
-            sample = random_child.make_test_samples(number=1, sink=a_sink)
-        return sample_list
-
 
 class AssetClass(TaxonomyNode):
     def __init__(self, name, ref, sub_asset_classes, description=None):

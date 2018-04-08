@@ -203,16 +203,17 @@ class AssetClass(TaxonomyNode):
 
     def extend_classification(self, classification):
         classification.asset_class = self
-        sub_asset_class = self.sub_asset_class_by_name(classification.subject.sub_asset_class_name)
-        if sub_asset_class:
-            sub_asset_class.extend_classification(classification)
-        else:
-            classification.errors.append(
-                "Asset class '{asset_class_name}' has no Sub-asset Class named '{sub_asset_class_name}'.".format(
-                    asset_class_name=self.name,
-                    sub_asset_class_name=classification.subject.sub_asset_class_name
+        if self.children:
+            sub_asset_class = self.sub_asset_class_by_name(classification.subject.sub_asset_class_name)
+            if sub_asset_class:
+                sub_asset_class.extend_classification(classification)
+            else:
+                classification.errors.append(
+                    "Asset class '{asset_class_name}' has no Sub-asset Class named '{sub_asset_class_name}'.".format(
+                        asset_class_name=self.name,
+                        sub_asset_class_name=classification.subject.sub_asset_class_name
+                    )
                 )
-            )
         return classification
 
     def sub_asset_class_by_name(self, sub_asset_class_name):

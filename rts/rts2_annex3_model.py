@@ -61,6 +61,11 @@ class TaxonomyNode(object):
     """
 
     @property
+    def name(self):
+        raise NotImplementedError('name() must be implemented in concrete subclass {my_class}'
+                                  .format(my_class=type(self)))
+
+    @property
     def parent(self):
         raise NotImplementedError('parent() must be implemented in concrete subclass {my_class}'
                                   .format(my_class=type(self)))
@@ -85,21 +90,33 @@ class TaxonomyNode(object):
         else:
             return self.parent.parents.append(self)
         
-    def make_test_samples(self, number, sink=None):
+    def make_test_samples(self, number, sink_function=None):
         """
         Synthesize a number of sample trades from my children.  If
         a sink function/lambda is given this will be called with each
         sample as it is generated and an empty list will be returned.
-        If no sink is given the samples will be gathered in a list and
-        the complete list will be returned.
+        If no sink_function is given the samples will be gathered in a list 
+        and the complete list will be returned.
         """
+        print('Generating samples for {name}.'.format(name=self.name))
         sample_list=[]
-        a_sink = sink or (lambda x: sample_list.append(x))
-        number_of_children = len(self.children)
+        sink = sink_function or (lambda x: sample_list.append(x))
         for _ in range(number):
-            random_child = self.children[random.randint(0, number_of_children - 1)]
-            sample = random_child.make_test_samples(number=1, sink=a_sink)
+            if self.children:
+                random_child = random.choice(self.children)
+                random_child.make_test_samples(number=1, sink_function=sink)
+            else:
+                new_sample = SampleTrade()
+                self.init_sample(new_sample)
+                sink(new_sample)
         return sample_list
+        
+    def init_sample(self,  sample):
+        """
+        I initialise sample to look like my kind of trade ... well, my subclasses do.
+        """
+        raise NotImplementedError('init_sample() must be implemented in concrete subclass {my_class}'
+                          .format(my_class=type(self)))
 
 
 class AssetClassSet(TaxonomyNode):
@@ -109,6 +126,10 @@ class AssetClassSet(TaxonomyNode):
         self._asset_classes = []
         given_asset_classes = asset_classes or []
         self._asset_classes.extend(given_asset_classes)
+
+    @property
+    def name(self):
+        return "root"
 
     @property
     def asset_classes(self):
@@ -165,13 +186,17 @@ class AssetClassSet(TaxonomyNode):
 
 class AssetClass(TaxonomyNode):
     def __init__(self, name, ref, sub_asset_classes, description=None):
-        self.name = name
+        self._name = name
         self.description = description
         self.ref = ref
         # Claim ownership of the asset classes, then assign them as my children
         for sub_asset_class in sub_asset_classes:
             sub_asset_class.parent = self
         self.sub_asset_classes = sub_asset_classes
+        
+    @property
+    def name(self):
+        return self._name
 
     def matches(self, subject):
         return subject.asset_class_name == self.name
@@ -222,6 +247,12 @@ class AssetClass(TaxonomyNode):
     @property
     def children(self):
         return self.sub_asset_classes
+        
+    def init_sample(self,  sample):
+        """
+        I initialise sample to look like my kind of trade.
+        """
+        sample.asset_class_name = self.name
 
 
 class SubAssetClass(TaxonomyNode):
@@ -233,7 +264,7 @@ class SubAssetClass(TaxonomyNode):
             criteria=None,
             thresholds=None,):
         self.ref = ref
-        self.name = name
+        self._name = name
         self.description = description
         # Claim ownership of the criteria, then assign them as my children
         given_criteria = [] if criteria is None else criteria
@@ -242,6 +273,10 @@ class SubAssetClass(TaxonomyNode):
         self._criteria = given_criteria
         self._thresholds = thresholds
         self._parent = None
+
+    @property
+    def name(self):
+        return self._name
 
     @property
     def parent(self):
@@ -298,6 +333,13 @@ class SubAssetClass(TaxonomyNode):
     def criterion_number_for(self, criterion):
         index = self.criteria.index(criterion)
         return index + 1
+        
+    def init_sample(self,  sample):
+        """
+        I initialise sample to look like my kind of trade.
+        """
+        self.parent.init_sample(sample)
+        sample.sub_asset_class_name = self.name
 
 
 class Classification(object):

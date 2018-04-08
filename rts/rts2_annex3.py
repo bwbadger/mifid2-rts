@@ -3038,3 +3038,7 @@ if __name__ == "__main__":
     sample = FXSample(**fx_sample)
     sample.maturity_date = datetime.date.today() + datetime.timedelta(days=1)
     classify(sample)
+    
+    print("\nGenerated samples")
+    sample = class_root.make_test_samples(1)[0]
+    classify(sample)

@@ -183,13 +183,20 @@ class AssetClassSet(TaxonomyNode):
         for asset_class in self.children:
             sub_asset_class_list.extend(asset_class.children)
         return sub_asset_class_list
+        
+    def sub_asset_class_by_name(self, sub_asset_class_name):
+        return next((sub_asset_class
+                     for sub_asset_class
+                     in self.all_sub_asset_classes()
+                     if sub_asset_class_name == sub_asset_class.name),
+                    None)
 
 class AssetClass(TaxonomyNode):
     def __init__(self, name, ref, sub_asset_classes, description=None):
         self._name = name
         self.description = description
         self.ref = ref
-        # Claim ownership of the asset classes, then assign them as my children
+        # Claim ownership of the sub-asset classes, then assign them as my children
         for sub_asset_class in sub_asset_classes:
             sub_asset_class.parent = self
         self.sub_asset_classes = sub_asset_classes

@@ -92,17 +92,16 @@ class TaxonomyNode(object):
         
     def make_test_samples(self, number, sink_function=None):
         """
-        Synthesize a number of sample trades from my children.  If
-        a sink function/lambda is given this will be called with each
+        Synthesize a number of sample trades from me.  If a sink
+        function (or lambda) is given this will be called with each
         sample as it is generated and an empty list will be returned.
-        If no sink_function is given the samples will be gathered in a list 
+        If no sink_function is given the samples will be collected in a list 
         and the complete list will be returned.
         """
-        print('Generating samples for {name}.'.format(name=self.name))
         sample_list=[]
         sink = sink_function or (lambda x: sample_list.append(x))
         for _ in range(number):
-            if self.children:
+            if self.should_delegate_sample_generation():
                 random_child = random.choice(self.children)
                 random_child.make_test_samples(number=1, sink_function=sink)
             else:
@@ -111,6 +110,14 @@ class TaxonomyNode(object):
                 sink(new_sample)
         return sample_list
         
+    def should_delegate_sample_generation(self):
+        """
+        The asset class set and asset classes which have children can simply
+        delegate the job of generating a sample to a child.
+        See also the sub-asset class ... which can't simply delegate.
+        """
+        return self.children  # Note: this is the pythonic way vs  using "len(x) > 0"
+
     def init_sample(self,  sample):
         """
         I initialise sample to look like my kind of trade ... well, my subclasses do.
@@ -190,6 +197,7 @@ class AssetClassSet(TaxonomyNode):
                      in self.all_sub_asset_classes()
                      if sub_asset_class_name == sub_asset_class.name),
                     None)
+
 
 class AssetClass(TaxonomyNode):
     def __init__(self, name, ref, sub_asset_classes, description=None):
@@ -341,6 +349,14 @@ class SubAssetClass(TaxonomyNode):
     def criterion_number_for(self, criterion):
         index = self.criteria.index(criterion)
         return index + 1
+
+    def should_delegate_sample_generation(self):
+        """
+        The asset class set and asset classes can delegate the generation
+        of samples, but I can't because below me are the criteria ... and I need
+        to generate data for each of them, not just one.
+        """
+        return False
         
     def init_sample(self,  sample):
         """
@@ -348,6 +364,7 @@ class SubAssetClass(TaxonomyNode):
         """
         self.parent.init_sample(sample)
         sample.sub_asset_class_name = self.name
+        # TODO:   Now add in the criteria values
 
 
 class Classification(object):
@@ -1026,7 +1043,7 @@ class EnergyMaturityBucketCriterion(Criterion):
                 gas_electricity=['ELEC', 'NGAS', 'INRG', 'RNNG'],
             )
             reversed_map = {}
-            for bucket_name, sub_product_names in product_map.iteritems():
+            for bucket_name, sub_product_names in product_map.items():
                 for sub_product_name in sub_product_names:
                     reversed_map[sub_product_name] = bucket_name
             self._bucket_map = reversed_map

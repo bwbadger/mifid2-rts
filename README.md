@@ -18,7 +18,7 @@ There are [some slides](https://docs.google.com/presentation/d/1sVgeO3IAO7ZMrbzA
 
 If you would like to see some trivial examples of the code in use, just run rts2_annex3.py from the command line.  This will build the taxonomies and run a few simple example ‘trades’ through.  The module dumps a representation of the RTS 2 taxonomy and the test trade classifications to stdout.
 
-Here is an example of building and classifying a sample deal:
+Here is an example of building and classifying a sample trade:
 
 ```python
 import datetime

@@ -582,10 +582,17 @@ class DescreteValueCriterion(Criterion):
 
     def extend_classification(self, classification):
         try:
-            this_value = self.subject_value(classification.subject)
+            try:
+                this_value = self.subject_value(classification.subject)
+            except (AttributeError):
+                classification.errors.append('{my_class} got no value.  Should be one of [{good_values}].'.format(
+                    my_class=type(self).__name__,
+                    good_values=", ".join(self.concrete_options),
+                ))
+                return classification
             this_option = self.concrete_options[this_value]
             classification.options.append(this_option)
-        except (KeyError, AttributeError) as ex:
+        except (KeyError) as ex:
             classification.errors.append('{my_class} got bad value: {value}.  Should be one of [{good_values}].'.format(
                 my_class=type(self).__name__,
                 value=self.subject_value(classification.subject),
@@ -1055,7 +1062,14 @@ class EnergyMaturityBucketCriterion(Criterion):
         Energy type must be one of the Subproduct vales of NRGY in RTS 23
         """
         try:
-            bucket_key = self.bucket_map[classification.subject.energy_type]
+            try:
+                # TODO: Use the energy type criteria to try to get the value ... and return None
+                energy_type = classification.subject.energy_type
+            except (AttributeError):
+                classification.errors.append(
+                    'Bad energy maturity bucket.  Subject has no energy type.')
+                return classification
+            bucket_key = self.bucket_map[energy_type]
             bucket_criterion = self._options[bucket_key]
             bucket_criterion.extend_classification(classification)
         except KeyError:

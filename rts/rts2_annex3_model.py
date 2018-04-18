@@ -496,7 +496,7 @@ class Criterion(TaxonomyNode):
                                   .format(my_class=type(self)))
 
     def subject_value(self, subject):
-        getattr(subject, self.selector, None)
+        return getattr(subject, self.selector, None)
 
     @property
     def criterion_number(self):

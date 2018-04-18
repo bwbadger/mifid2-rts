@@ -488,8 +488,15 @@ class Criterion(TaxonomyNode):
 
     @property
     def selector(self):
+        """
+        This is the string which can be used with getattr() to get a value for a criteria
+        from a subject (a trade).  The name 'selector' is taken from Smalltalk.
+        """
         raise NotImplementedError('selector() must be implemented in concrete subclass {my_class}'
                                   .format(my_class=type(self)))
+
+    def subject_value(self, subject):
+        getattr(subject, self.selector, None)
 
     @property
     def criterion_number(self):
@@ -542,11 +549,6 @@ class ArbitraryValueCriterion(Criterion):
         super(ArbitraryValueCriterion, self).__init__(description)
         self.concrete_options = dict()
 
-    def subject_value(self, subject):
-        # TODO: This must become getattr(subject, self.selector)
-        raise NotImplementedError('subject_value() must be implemented in concrete subclass {my_class}'
-                                  .format(my_class=type(self)))
-
     def extend_classification(self, classification):
         try:
             this_value = str(self.subject_value(classification.subject))
@@ -583,10 +585,6 @@ class DescreteValueCriterion(Criterion):
                 values_dict[allowed_value] = new_option
             self._concrete_options = values_dict
         return self._concrete_options
-
-    def subject_value(self, subject):
-        raise NotImplementedError('subject_value() must be implemented in concrete subclass {my_class}'
-                                  .format(my_class=type(self)))
 
     def allowed_values(self):
         raise NotImplementedError('allowed_values() must be implemented in concrete subclass {my_class}'
@@ -646,60 +644,69 @@ class NotionalCurrencyCriterion(ArbitraryValueCriterion):
     @property
     def selector(self):
         return 'notional_currency'
-    
-    def subject_value(self, subject):
-        return subject.notional_currency
 
 
 class UnderlyingIssuerCriterion(ArbitraryValueCriterion):
-    def subject_value(self, subject):
-        return subject.underlying_issuer
+    
+    @property
+    def selector(self):
+        return 'underlying_issuer'
 
 
 class UnderlyingCurrencyPairCriterion(ArbitraryValueCriterion):
-    def subject_value(self, subject):
-        return subject.underlying_currency_pair
+
+    @property
+    def selector(self):
+        return 'underlying_currency_pair'
 
 
 class UnderlyingStockIndexCriterion(ArbitraryValueCriterion):
 
-    def subject_value(self, subject):
-        return subject.underlying_stock_index
+    @property
+    def selector(self):
+        return 'underlying_stock_index'
 
 
 class UnderlyingShareCriterion(ArbitraryValueCriterion):
 
-    def subject_value(self, subject):
-        return subject.underlying_share
+    @property
+    def selector(self):
+        return 'underlying_share'
 
 
 class UnderlyingShareEntitlingToDividendsCriterion(ArbitraryValueCriterion):
 
-    def subject_value(self, subject):
-        return subject.underlying_share_entitling_to_dividends
+    @property
+    def selector(self):
+        return 'underlying_share_entitling_to_dividends'
 
 
 class UnderlyingDividendIndexCriterion(ArbitraryValueCriterion):
 
-    def subject_value(self, subject):
-        return subject.underlying_dividend_index
+    @property
+    def selector(self):
+        return 'underlying_dividend_index'
 
 
 class UnderlyingVolatilityIndexCriterion(ArbitraryValueCriterion):
 
-    def subject_value(self, subject):
-        return subject.underlying_volatility_index
+    @property
+    def selector(self):
+        return 'underlying_volatility_index'
 
 
 class UnderlyingETFCriterion(ArbitraryValueCriterion):
 
-    def subject_value(self, subject):
-        return subject.underlying_etf
+    @property
+    def selector(self):
+        return 'underlying_etf'
 
 
 class UnderlyingEquityTypeCriterion(DescreteValueCriterion):
-    def subject_value(self, subject):
-        return subject.underlying_type
+
+    @property
+    def selector(self):
+        return 'underlying_type'
 
     def allowed_values(self):
         return['single name', 'index', 'basket']
@@ -707,14 +714,16 @@ class UnderlyingEquityTypeCriterion(DescreteValueCriterion):
 
 class UnderlyingEquityCriterion(ArbitraryValueCriterion):
 
-    def subject_value(self, subject):
-        return subject.underlying_equity
+    @property
+    def selector(self):
+        return 'underlying_equity'
 
 
 class UnderlyingCommodityCriterion(ArbitraryValueCriterion):
 
-    def subject_value(self, subject):
-        return subject.underlying_commodity
+    @property
+    def selector(self):
+        return 'underlying_commodity'
 
 
 class UnderlyingBondCriterion(ArbitraryValueCriterion):
@@ -813,7 +822,7 @@ class LoadTypeCriterion(ArbitraryValueCriterion):
 
 
 class DeliveryCriterion(ArbitraryValueCriterion):
-    
+
     @property
     def selector(self):
         return 'delivery'
@@ -823,18 +832,24 @@ class DeliveryCriterion(ArbitraryValueCriterion):
 
 
 class UnderlyingInstrumentCriterion(ArbitraryValueCriterion):
-    def subject_value(self, subject):
-        return subject.underlying_instrument
+
+    @property
+    def selector(self):
+        return 'underlying_instrument'
 
 
 class UnderlyingInterestRateCriterion(ArbitraryValueCriterion):
-    def subject_value(self, subject):
-        return subject.underlying_interest_rate
+
+    @property
+    def selector(self):
+        return 'underlying_interest_rate'
 
 
 class TermOfUnderlyingInterestRateCriterion(ArbitraryValueCriterion):
-    def subject_value(self, subject):
-        return subject.term_of_underlying_interest_rate
+    
+    @property
+    def selector(self):
+        return 'term_of_underlying_interest_rate'
 
 
 class UnderlyingSwapTypeCriterion(ArbitraryValueCriterion):
@@ -947,6 +962,11 @@ class BucketedTermOfUnderlyingCriterion(Criterion):
                 )
             )
         return classification
+
+    def init_sample(self,  sample):
+        sample.term_from_date = datetime.date.today()
+        delta_days = random.choice([30,  90,  180,  365,  1000])
+        sample.term_to_date = sample.term_from_date + datetime.timedelta(delta_days)
 
 
 class SwapMaturityBucketCriterion(Criterion):
@@ -1128,7 +1148,7 @@ class EnergyMaturityBucketCriterion(Criterion):
                 )
             )
         return classification
-        
+
     def init_sample(self,  sample):
         sample.from_date = datetime.date.today()
         delta_days = random.choice([30,  90,  180,  365,  1000])
@@ -1220,6 +1240,11 @@ class MaturityBucketCriterion(Criterion):
                 to_date=classification.subject.to_date,
             ))
         return classification
+
+    def init_sample(self,  sample):
+        sample.from_date = datetime.date.today()
+        delta_days = random.choice([30,  90,  180,  365,  1000])
+        sample.to_date = sample.from_date + datetime.timedelta(delta_days)
 
 
 class MaturityBucketCeiling(object):

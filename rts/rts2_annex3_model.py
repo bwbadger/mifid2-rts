@@ -364,7 +364,8 @@ class SubAssetClass(TaxonomyNode):
         """
         self.parent.init_sample(sample)
         sample.sub_asset_class_name = self.name
-        # TODO:   Now add in the criteria values
+        for a_criterion in self.criteria:
+            a_criterion.init_sample(sample)
 
 
 class Classification(object):
@@ -486,6 +487,11 @@ class Criterion(TaxonomyNode):
                                   .format(my_class=type(self)))
 
     @property
+    def selector(self):
+        raise NotImplementedError('selector() must be implemented in concrete subclass {my_class}'
+                                  .format(my_class=type(self)))
+
+    @property
     def criterion_number(self):
         return self.parent.criterion_number_for(self)
 
@@ -537,6 +543,7 @@ class ArbitraryValueCriterion(Criterion):
         self.concrete_options = dict()
 
     def subject_value(self, subject):
+        # TODO: This must become getattr(subject, self.selector)
         raise NotImplementedError('subject_value() must be implemented in concrete subclass {my_class}'
                                   .format(my_class=type(self)))
 
@@ -555,6 +562,11 @@ class ArbitraryValueCriterion(Criterion):
                 )
             )
         return classification
+
+    def init_sample(self,  sample):
+        sample_value = '{selector}.value'.format(selector=self.selector)
+        setattr(sample,  self.selector,  sample_value)
+        return sample
 
 
 class DescreteValueCriterion(Criterion):
@@ -599,6 +611,11 @@ class DescreteValueCriterion(Criterion):
                 good_values=", ".join(self.concrete_options),
             ))
         return classification
+        
+    def init_sample(self,  sample):
+        sample_value = random.choice(self.allowed_values())
+        setattr(sample,  self.selector,  sample_value)
+        return sample
 
 
 class ValueOption(CriterionOption):
@@ -625,6 +642,11 @@ class ValueOption(CriterionOption):
 
 
 class NotionalCurrencyCriterion(ArbitraryValueCriterion):
+    
+    @property
+    def selector(self):
+        return 'notional_currency'
+    
     def subject_value(self, subject):
         return subject.notional_currency
 
@@ -723,6 +745,10 @@ class EquityParameterCriterion(DescreteValueCriterion):
 
 
 class EnergyTypeCriterion(DescreteValueCriterion):
+    
+    @property
+    def selector(self):
+        return 'energy_type'
 
     def subject_value(self, subject):
         return subject.energy_type
@@ -757,21 +783,41 @@ class MetalTypeCriterion(DescreteValueCriterion):
 
 
 class UnderlyingEnergyCriterion(ArbitraryValueCriterion):
+    
+    @property
+    def selector(self):
+        return 'underlying_energy'
+    
     def subject_value(self, subject):
         return subject.underlying_energy
 
 
 class SettlementTypeCriterion(ArbitraryValueCriterion):
+    
+    @property
+    def selector(self):
+        return 'settlement_type'
+
     def subject_value(self, subject):
         return subject.settlement_type
 
 
 class LoadTypeCriterion(ArbitraryValueCriterion):
+    
+    @property
+    def selector(self):
+        return 'load_type'
+    
     def subject_value(self, subject):
         return subject.load_type
 
 
 class DeliveryCriterion(ArbitraryValueCriterion):
+    
+    @property
+    def selector(self):
+        return 'delivery'
+
     def subject_value(self, subject):
         return subject.delivery
 
@@ -1082,6 +1128,11 @@ class EnergyMaturityBucketCriterion(Criterion):
                 )
             )
         return classification
+        
+    def init_sample(self,  sample):
+        sample.from_date = datetime.date.today()
+        delta_days = random.choice([30,  90,  180,  365,  1000])
+        sample.to_date = sample.from_date + datetime.timedelta(delta_days)
 
     def criterion_number_for(self, criterion):
         """

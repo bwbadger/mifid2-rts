@@ -728,26 +728,30 @@ class UnderlyingCommodityCriterion(ArbitraryValueCriterion):
 
 class UnderlyingBondCriterion(ArbitraryValueCriterion):
 
-    def subject_value(self, subject):
-        return subject.underlying_bond
+    @property
+    def selector(self):
+        return 'underlying_bond'
 
 
 class UnderlyingFutureForwardCriterion(ArbitraryValueCriterion):
 
-    def subject_value(self, subject):
-        return subject.underlying_future_forward
+    @property
+    def selector(self):
+        return 'underlying_future_forward'
 
 
 class UnderlyingEquityOptionCriterion(ArbitraryValueCriterion):
 
-    def subject_value(self, subject):
-        return subject.underlying_equity_option
+    @property
+    def selector(self):
+        return 'underlying_equity_option'
 
 
 class EquityParameterCriterion(DescreteValueCriterion):
-
-    def subject_value(self, subject):
-        return subject.equity_parameter
+    
+    @property
+    def selector(self):
+        return 'equity_parameter'
 
     def allowed_values(self):
         return['price', 'dividend', 'variance']
@@ -758,9 +762,6 @@ class EnergyTypeCriterion(DescreteValueCriterion):
     @property
     def selector(self):
         return 'energy_type'
-
-    def subject_value(self, subject):
-        return subject.energy_type
 
     @staticmethod
     def rts23_nrgy_nodes():
@@ -776,8 +777,9 @@ class EnergyTypeCriterion(DescreteValueCriterion):
 
 class MetalTypeCriterion(DescreteValueCriterion):
 
-    def subject_value(self, subject):
-        return subject.metal_type
+    @property
+    def selector(self):
+        return 'metal_type'
 
     @staticmethod
     def rts23_metl_nodes():
@@ -796,9 +798,6 @@ class UnderlyingEnergyCriterion(ArbitraryValueCriterion):
     @property
     def selector(self):
         return 'underlying_energy'
-    
-    def subject_value(self, subject):
-        return subject.underlying_energy
 
 
 class SettlementTypeCriterion(ArbitraryValueCriterion):
@@ -807,18 +806,12 @@ class SettlementTypeCriterion(ArbitraryValueCriterion):
     def selector(self):
         return 'settlement_type'
 
-    def subject_value(self, subject):
-        return subject.settlement_type
-
 
 class LoadTypeCriterion(ArbitraryValueCriterion):
     
     @property
     def selector(self):
         return 'load_type'
-    
-    def subject_value(self, subject):
-        return subject.load_type
 
 
 class DeliveryCriterion(ArbitraryValueCriterion):
@@ -826,9 +819,6 @@ class DeliveryCriterion(ArbitraryValueCriterion):
     @property
     def selector(self):
         return 'delivery'
-
-    def subject_value(self, subject):
-        return subject.delivery
 
 
 class UnderlyingInstrumentCriterion(ArbitraryValueCriterion):
@@ -846,85 +836,115 @@ class UnderlyingInterestRateCriterion(ArbitraryValueCriterion):
 
 
 class TermOfUnderlyingInterestRateCriterion(ArbitraryValueCriterion):
-    
+
     @property
     def selector(self):
         return 'term_of_underlying_interest_rate'
 
 
 class UnderlyingSwapTypeCriterion(ArbitraryValueCriterion):
-    def subject_value(self, subject):
-        return subject.underlying_swap_type
+
+    @property
+    def selector(self):
+        return 'underlying_swap_type'
 
 
 class InflationIndexCriterion(ArbitraryValueCriterion):
-    def subject_value(self, subject):
-        return subject.inflation_index
+
+    @property
+    def selector(self):
+        return 'inflation_index'
 
 
 class NotionalCurrencyPairCriterion(ArbitraryValueCriterion):
-    def subject_value(self, subject):
-        return subject.notional_currency_pair
+
+    @property
+    def selector(self):
+        return 'notional_currency_pair'
 
 
 class UnderlyingMetalCriterion(ArbitraryValueCriterion):
-    def subject_value(self, subject):
-        return subject.underlying_metal
+
+    @property
+    def selector(self):
+        return 'underlying_metal'
 
 
 class UnderlyingAgriculturalCriterion(ArbitraryValueCriterion):
-    def subject_value(self, subject):
-        return subject.underlying_agricultural
+
+    @property
+    def selector(self):
+        return 'underlying_agricultural'
 
 
 class UnderlyingIndexCriterion(ArbitraryValueCriterion):
-    def subject_value(self, subject):
-        return subject.underlying_index
+
+    @property
+    def selector(self):
+        return 'underlying_index'
 
 
 class UnderlyingReferenceEntityCriterion(ArbitraryValueCriterion):
-    def subject_value(self, subject):
-        return subject.underlying_ref_entity
+
+    @property
+    def selector(self):
+        return 'underlying_ref_entity'
 
 
 class UnderlyingReferenceEntityTypeCriterion(ArbitraryValueCriterion):
-    def subject_value(self, subject):
-        return subject.ref_entity_type
+
+    @property
+    def selector(self):
+        return 'ref_entity_type'
 
 
 class CDSIndexSubClassCriterion(ArbitraryValueCriterion):
-    def subject_value(self, subject):
-        return subject.cds_index_sub_class
+
+    @property
+    def selector(self):
+        return 'cds_index_sub_class'
 
 
 class CDSSubClassCriterion(ArbitraryValueCriterion):
-    def subject_value(self, subject):
-        return subject.cds_sub_class
+
+    @property
+    def selector(self):
+        return 'cds_sub_class'
 
 
 class ContractTypeCriterion(ArbitraryValueCriterion):
-    def subject_value(self, subject):
-        return subject.contract_type
+
+    @property
+    def selector(self):
+        return 'contract_type'
 
 
 class FreightTypeCriterion(ArbitraryValueCriterion):
-    def subject_value(self, subject):
-        return subject.freight_type
+
+    @property
+    def selector(self):
+        return 'freight_type'
 
 
 class FreightSubTypeCriterion(ArbitraryValueCriterion):
-    def subject_value(self, subject):
-        return subject.freight_sub_type
+
+    @property
+    def selector(self):
+        return 'freight_sub_type'
 
 
 class FreightSizeCriterion(ArbitraryValueCriterion):
-    def subject_value(self, subject):
-        return subject.freight_size
+
+    @property
+    def selector(self):
+        return 'freight_size'
 
 
 class FreightRouteOrTimeCriterion(ArbitraryValueCriterion):
-    def subject_value(self, subject):
-        return subject.freight_route_or_time
+
+    @property
+    def selector(self):
+        return 'freight_route_or_time'
 
 
 class BucketedTermOfUnderlyingCriterion(Criterion):
@@ -1005,6 +1025,11 @@ class SwapMaturityBucketCriterion(Criterion):
             )
         return classification
 
+    def init_sample(self,  sample):
+        sample.swap_from_date = datetime.date.today()
+        delta_days = random.choice([30,  90,  180,  365,  1000])
+        sample.swap_to_date = sample.swap_from_date + datetime.timedelta(delta_days)
+
 
 class OptionMaturityBucketCriterion(Criterion):
     def __init__(self, description, bucket_ceilings):
@@ -1042,6 +1067,11 @@ class OptionMaturityBucketCriterion(Criterion):
             )
         return classification
 
+    def init_sample(self,  sample):
+        sample.option_from_date = datetime.date.today()
+        delta_days = random.choice([30,  90,  180,  365,  1000])
+        sample.option_to_date = sample.option_from_date + datetime.timedelta(delta_days)
+
 
 class MetalsMaturityBucketCriterion(Criterion):
     def __init__(self, description, options):
@@ -1077,6 +1107,9 @@ class MetalsMaturityBucketCriterion(Criterion):
                 )
             )
         return classification
+
+    def init_sample(self,  sample):
+        random.choice(list(self._options.values())).init_sample(sample)
 
     def criterion_number_for(self, criterion):
         """
@@ -1190,6 +1223,9 @@ class EquityParameterMaturityBucketCriterion(Criterion):
                 good_values=", ".join(self._options.keys()),
             ))
         return classification
+
+    def init_sample(self,  sample):
+        random.choice(list(self._options.values())).init_sample(sample)
 
     def criterion_number_for(self, criterion=None):
         """

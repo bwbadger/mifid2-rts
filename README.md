@@ -1,10 +1,22 @@
 # mifid2-rts
 
-This project implements an executable form of the MiFID II RTS (Regulatory Technical Standard) documents.
+The aim of the mifid2-rts project is to pursuade regulators to work in a different way, to communicate regulatory intent using working software examples rather than relying solely on legal tomes. 
+
+As an example of how regulatory intent could be expressed in software this project implements parts of the [MiFID II RTS (Regulatory Technical Standard) documents](http://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:32017R0583&rid=1).
 
 Here are some introductory videos:
 * [An overview of the context and the objectives of the project](https://www.youtube.com/watch?v=kmV2jDNgH-Q).
 * [How to download the code from GitHub and run it](https://youtu.be/Hoo31-LJi4s).
+* Using the mifid2-rts code to generate lots of sample trade data (comming soon).
+* Running an SI calculation using the mifid2-rts code (comming soon).
+
+And here are some Jupyter Notebook examples of the code in use:
+* [Working through the RTS 2 Annex II implementation](https://github.com/bwbadger/mifid2-rts/blob/master/rts/RTS2_Worked_Examples.ipynb).
+* [Generating test trade data](https://github.com/bwbadger/mifid2-rts/blob/master/rts/Trade%20data%20generation%20and%20testing.ipynb).
+* [Running the SI calculator over generated trade data](https://github.com/bwbadger/mifid2-rts/blob/master/rts/Using%20sample%20trades%20in%20an%20SI%20calculation.ipynb).
+
+
+## Context for the mifid2-rts project
 
 [MiFID (Markets in Financial Instruments Directive)](https://en.wikipedia.org/wiki/Markets_in_Financial_Instruments_Directive_2004) is EU law for the regulation of the financial industry.  The [original MiFID](http://eur-lex.europa.eu/LexUriServ/LexUriServ.do?uri=CELEX:32004L0039:EN:HTML) was introduced in 2004, and following the 2007/8 financial crisis a second version, [MiFID II](https://www.esma.europa.eu/policy-rules/mifid-ii-and-mifir), was introduced in 2014.
 
@@ -18,7 +30,9 @@ There are [some slides](https://docs.google.com/presentation/d/1sVgeO3IAO7ZMrbzA
 
 If you would like to see some trivial examples of the code in use, just run rts2_annex3.py from the command line.  This will build the taxonomies and run a few simple example ‘trades’ through.  The module dumps a representation of the RTS 2 taxonomy and the test trade classifications to stdout.
 
-Here is an example of building and classifying a sample trade:
+## A simple example
+
+Here is an example of building and classifying a sample trade.
 
 ```python
 import datetime

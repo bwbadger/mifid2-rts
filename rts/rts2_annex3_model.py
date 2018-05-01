@@ -37,6 +37,7 @@ import datetime
 import calendar
 import collections
 import random
+import json
 
 import rts23_table2
 
@@ -460,6 +461,9 @@ class Classification(object):
         if self.errors:
             target_dict['errors'] = str(self.errors)
         return target_dict
+        
+    def as_json(self,  indent=None):
+        return json.dumps(self.classification_dict(),  indent=indent)
 
 
 class Criterion(TaxonomyNode):

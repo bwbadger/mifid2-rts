@@ -43,7 +43,7 @@ As far as possible the terminology is taken directly from RTS 2.
 
 from rts2_annex3_model import *
 
-class_root = AssetClassSet(
+class_root = TaxonomyRoot(
     version_id="EU 2017/583 of 14 July 2016",
 )
 

@@ -126,7 +126,7 @@ class TaxonomyNode(object):
                           .format(my_class=type(self)))
 
 
-class AssetClassSet(TaxonomyNode):
+class TaxonomyRoot(TaxonomyNode):
 
     def __init__(self, version_id, asset_classes=None):
         self.version_id = version_id

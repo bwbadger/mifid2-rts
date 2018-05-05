@@ -1,6 +1,6 @@
 # mifid2-rts
 
-The aim of the mifid2-rts project is to pursuade regulators to work in a different way, to communicate regulatory intent using working software examples rather than relying solely on legal tomes. 
+The aim of the mifid2-rts project is to persuade regulators to work in a different way, to communicate regulatory intent using working software examples rather than relying solely on legal tomes. 
 
 As an example of how regulatory intent could be expressed in software this project implements parts of the [MiFID II RTS (Regulatory Technical Standard) documents](http://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:32017R0583&rid=1).
 

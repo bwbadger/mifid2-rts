@@ -8,7 +8,7 @@ Here are some introductory videos:
 * [An overview of the context and the objectives of the project](https://www.youtube.com/watch?v=kmV2jDNgH-Q).
 * [How to download the code from GitHub and run it](https://youtu.be/Hoo31-LJi4s).
 * [Using the mifid2-rts code to generate lots of sample trade data](https://youtu.be/1kUJu1-snVY).
-* Running an SI calculation using the mifid2-rts code (comming soon).
+* [Running an SI calculation using the mifid2-rts code](https://youtu.be/hsOs4hFc9lA).
 
 And here are some Jupyter Notebook examples of the code in use:
 * [Working through the RTS 2 Annex II implementation](https://github.com/bwbadger/mifid2-rts/blob/master/rts/RTS2_Worked_Examples.ipynb).

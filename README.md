@@ -44,7 +44,7 @@ class SampleTrade(object):
 sample_trade = SampleTrade()
 sample_trade.asset_class_name = 'Foreign Exchange Derivatives'
 sample_trade.sub_asset_class_name= 'Deliverable FX options (DO)'
-sample_trade.underlying_currency_pair = ('GBP', 'USD')
+sample_trade.underlying_currency_pair = ('GBP~USD')
 sample_trade.from_date = datetime.date(2017, 8, 13)
 sample_trade.to_date = datetime.date(2017, 10, 12)
 
@@ -55,9 +55,21 @@ sample_classification.classification_dict()
 'Asset class': 'Foreign Exchange Derivatives', 
 'Sub-asset class': 'Deliverable FX options (DO)', 
 'Segmentation criterion 1 description': 'underlying currency pair defined as combination of the two currencies underlying the derivative contract', 
-'Segmentation criterion 1': "('GBP', 'USD')", 
+'Segmentation criterion 1': "('GBP~USD')", 
 'Segmentation criterion 2 description': 'time to maturity bucket of the swap defined as follows:',
 'Segmentation criterion 2': 'Maturity bucket 2: 1 week to 3 months', 
 } 
+
+# ... or as Json:
+print(sample_classification.as_json(indent=4))
+{
+    "RTS2 version": "EU 2017/583 of 14 July 2016", 
+    "Asset class": "Foreign Exchange Derivatives", 
+    "Sub-asset class": "Deliverable FX options (DO)", 
+    "Segmentation criterion 1 description": "underlying currency pair defined as combination of the two currencies underlying the derivative contract", 
+    "Segmentation criterion 1": "GBP~USD", 
+    "Segmentation criterion 2 description": "time to maturity bucket of the swap defined as follows:", 
+    "Segmentation criterion 2": "Maturity bucket 2: 1 week to 3 months"
+}
 ```
 
